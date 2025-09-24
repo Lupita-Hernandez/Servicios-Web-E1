@@ -41,4 +41,15 @@ public class RestExceptionHandler {
         body.put("soportados", ex.getSupportedHttpMethods());
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(body);
     }
+
+    /*@ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, Object>> handleGeneralException(Exception ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("error", "El nombre es un campo Obligatorio");
+        body.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
+    }
+        */
+
+
 }
