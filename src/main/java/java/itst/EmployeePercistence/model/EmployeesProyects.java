@@ -25,7 +25,7 @@ public class EmployeesProyects {
 
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
-    private Empleado employee;
+    private Employee employee;
 
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
