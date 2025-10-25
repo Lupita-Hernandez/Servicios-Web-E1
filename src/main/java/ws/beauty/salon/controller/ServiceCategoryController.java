@@ -17,7 +17,7 @@ import ws.beauty.salon.model.ServiceCategory;
 import ws.beauty.salon.service.ServiceCategoryService;
 
 @RestController
-@RequestMapping("/service-categories")
+@RequestMapping("/api/v1/service-categories")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @Tag(name = "Service Categories", description = "Endpoints for managing service categories")
 public class ServiceCategoryController {

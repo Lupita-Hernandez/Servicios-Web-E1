@@ -44,10 +44,6 @@ public class StylistGraphql {
     }
 
     //  Mutation: eliminar estilista
-    @MutationMapping
-    public Boolean delete(@Argument Integer idStylist) {
-        service.delete(idStylist);
-        return true;
-    }
+   
 }
 

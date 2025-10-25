@@ -13,19 +13,19 @@ import lombok.NoArgsConstructor;
 @Builder
 public class StylistResponse {
 
-    @JsonProperty("idStylist")
+    @JsonProperty("id stylist")
     private Integer id;
 
-    @JsonProperty("firstName")
+    @JsonProperty("first name")
     private String firstName;
 
-    @JsonProperty("lastName")
+    @JsonProperty("last name")
     private String lastName;
 
     @JsonProperty("specialty")
     private String specialty;
 
-    @JsonProperty("workSchedule")
+    @JsonProperty("work schedule")
     private String workSchedule;
 
     @JsonProperty("available")

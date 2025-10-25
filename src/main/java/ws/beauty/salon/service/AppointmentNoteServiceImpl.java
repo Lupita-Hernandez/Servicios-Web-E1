@@ -23,13 +23,13 @@ public class AppointmentNoteServiceImpl implements AppointmentNoteService {
     private final AppointmentNoteRepository noteRepository;
     private final AppointmentRepository appointmentRepository;
 
-    @Override
+    /*@Override
     public List<AppointmentNoteResponse> findAll() {
         return noteRepository.findAll()
                 .stream()
                 .map(AppointmentNoteMapper::toResponse)
                 .collect(Collectors.toList());
-    }
+    }*/
 
     @Override
     public List<AppointmentNoteResponse> findAllPaginated(int page, int size) {
@@ -69,11 +69,11 @@ public class AppointmentNoteServiceImpl implements AppointmentNoteService {
         return AppointmentNoteMapper.toResponse(existing);
     }
 
-    @Override
+    /*@Override
     public void delete(Integer id) {
         if (!noteRepository.existsById(id)) {
             throw new EntityNotFoundException("Note not found with id " + id);
         }
         noteRepository.deleteById(id);
-    }
+    }*/
 }

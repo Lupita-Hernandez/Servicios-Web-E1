@@ -22,7 +22,7 @@ import ws.beauty.salon.dto.AttendanceLogResponse;
 import ws.beauty.salon.service.AttendanceLogService;
 
 @RestController
-@RequestMapping("/api/v3/attendance")
+@RequestMapping("/api/v1/attendance")
 @RequiredArgsConstructor
 public class AttendanceLogController {
      private final AttendanceLogService service;

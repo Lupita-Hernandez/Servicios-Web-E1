@@ -1,6 +1,6 @@
 package ws.beauty.salon.graphql;
 
-import java.util.List;
+//import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -20,10 +20,10 @@ public class AppointmentNoteGraphql {
     private AppointmentNoteService service;
 
     //  Obtener todas las notas
-    @QueryMapping
+    /*@QueryMapping
     public List<AppointmentNoteResponse> findAllNotes() {
         return service.findAll();
-    }
+    }*/
 
     //  Obtener nota por ID
     @QueryMapping
@@ -46,9 +46,9 @@ public class AppointmentNoteGraphql {
     }
 
     //  Eliminar nota
-    @MutationMapping
+    /*@MutationMapping
     public Boolean deleteNote(@Argument Integer idNote) {
         service.delete(idNote);
         return true;
-    }
+    }*/
 }

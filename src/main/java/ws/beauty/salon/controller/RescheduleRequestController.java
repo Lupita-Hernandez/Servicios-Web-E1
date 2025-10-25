@@ -17,7 +17,7 @@ import ws.beauty.salon.service.RescheduleRequestService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/reschedule-requests")
+@RequestMapping("/api/v1/reschedule-requests")
 @Tag(name = "Reschedule Requests", description = "Manages appointment reschedule requests")
 public class RescheduleRequestController {
 

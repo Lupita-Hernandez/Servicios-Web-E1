@@ -17,7 +17,7 @@ import ws.beauty.salon.service.StylistServiceService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/stylist-services")
+@RequestMapping("/api/v1/stylist-services")
 @Tag(name = "Stylist Services", description = "Manage relations between stylists and services")
 @RequiredArgsConstructor
 public class StylistServiceController {

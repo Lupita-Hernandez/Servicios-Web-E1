@@ -7,6 +7,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +22,7 @@ import ws.beauty.salon.service.StylistService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/stylists")
+@RequestMapping("/api/v1/stylists")
 @Tag(name = "Stylists", description = "Provides methods for managing stylists")
 public class StylistController {
 
@@ -40,7 +42,7 @@ public class StylistController {
         return service.findAll();
     }
 
-    @Operation(summary = "Get all stylists with pagination")
+    /*@Operation(summary = "Get all stylists with pagination")
     @ApiResponse(responseCode = "200", description = "Found stylists with pagination", content = {
             @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = StylistResponse.class)))
     })
@@ -49,7 +51,7 @@ public class StylistController {
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
         return service.findAllPaginated(page, pageSize);
-    }
+    }*/
 
     @Operation(summary = "Get a stylist by id")
     @ApiResponses(value = {
@@ -68,7 +70,7 @@ public class StylistController {
             @Content(mediaType = "application/json", schema = @Schema(implementation = StylistResponse.class))
     })
     @PostMapping
-    public ResponseEntity<StylistResponse> create(@RequestBody StylistRequest request) {
+    public ResponseEntity<StylistResponse> create(@Valid @RequestBody StylistRequest request) {
         StylistResponse saved = service.create(request);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
@@ -78,17 +80,17 @@ public class StylistController {
             @Content(mediaType = "application/json", schema = @Schema(implementation = StylistResponse.class))
     })
     @PutMapping("/{id}")
-    public StylistResponse update(@PathVariable Integer id, @RequestBody StylistRequest request) {
+    public StylistResponse update(@PathVariable Integer id, @Valid @RequestBody StylistRequest request) {
         return service.update(id, request);
     }
 
-    @Operation(summary = "Delete a stylist")
+    /*@Operation(summary = "Delete a stylist")
     @ApiResponse(responseCode = "204", description = "Stylist deleted", content = @Content)
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id) {
         service.delete(id);
-    }
+    }*/
 
     // CONSULTAS ESPECIALIZADAS
 

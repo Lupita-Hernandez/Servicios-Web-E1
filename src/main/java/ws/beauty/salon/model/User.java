@@ -10,6 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.JoinColumn;
 
 @Getter
@@ -39,4 +41,15 @@ public class User {
     @OneToOne
     @JoinColumn(name = "id_stylist", referencedColumnName = "id_stylist")
     private Stylist stylist;
+
+    @PrePersist
+    @PreUpdate
+    private void validateExclusiveRelations() {
+        if (client != null && stylist != null) {
+            throw new IllegalStateException("A user cannot be both a client and a stylist at the same time.");
+        }
+        if (client == null && stylist == null) {
+            throw new IllegalStateException("A stylist must be assigned to the stylist role.");
+        }
+    }
 }

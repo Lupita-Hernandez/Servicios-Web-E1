@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReviewResponse {
-    @JsonProperty("id Review")
+    @JsonProperty("id review")
     private Integer idReview;
 
     // Solo el ID del cliente
-    @JsonProperty("id Client")
+    @JsonProperty("id client")
     private Integer idClient;
 
     // Solo el ID del servicio
-    @JsonProperty("id Service")
+    @JsonProperty("id service")
     private Integer idService;
 
     @JsonProperty("comment")
@@ -30,9 +30,10 @@ public class ReviewResponse {
 
     @JsonProperty("sentiment")
     private String sentiment;
-
+    @JsonProperty("first name")
     private String firstName;
-
+    
+    @JsonProperty("service name")
     private String serviceName;
 
 }

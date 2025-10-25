@@ -10,8 +10,10 @@ import org.springframework.lang.NonNull;
 public class CorsConfig implements WebMvcConfigurer {
   @Override
   public void addCorsMappings(@NonNull CorsRegistry registry) {
-    registry.addMapping("/api/v1/**")
-        .allowedOrigins("https://tu-frontend.com") // evitar "*" en producción
+    registry.addMapping("/**")
+        .allowedOrigins("https://beauty-salon.com")
+      //"https://www.beauty-salon.com",
+      //"http://localhost:3000") // evitar "*" en producción
         .allowedMethods("GET","POST","PUT","DELETE","PATCH","OPTIONS")
         .allowedHeaders("*");
         //.allowCredentials(true);   // si vas a enviar cookies/autenticación, pero entonces el test retornará el localhost

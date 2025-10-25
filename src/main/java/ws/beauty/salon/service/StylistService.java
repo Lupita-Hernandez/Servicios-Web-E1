@@ -8,8 +8,6 @@ public interface StylistService {
     StylistResponse findById(Integer id);
     StylistResponse create(StylistRequest request);
     StylistResponse update(Integer id, StylistRequest request);
-    void delete(Integer id);
     List<StylistResponse> getBySpecialty(String specialty);
     List<StylistResponse> getAvailableStylists();
-    List<StylistResponse> findAllPaginated(int page, int pageSize);
 }

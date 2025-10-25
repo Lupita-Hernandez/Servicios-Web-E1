@@ -59,14 +59,19 @@ public class UserServiceImpl implements UserService {
     public UserResponse create(UserRequest dto) {
         User user = UserMapper.toEntity(dto);
 
-        // Relación con Client
+        // Prevent registering both client and stylist at the same time
+        if (dto.getClientId() != null && dto.getStylistId() != null) {
+            throw new IllegalArgumentException("A user cannot be linked to both a client and a stylist.");
+        }
+
+        // Relation with Client
         if (dto.getClientId() != null) {
             Client client = clientRepository.findById(dto.getClientId())
                     .orElseThrow(() -> new EntityNotFoundException("Client not found: " + dto.getClientId()));
             user.setClient(client);
         }
 
-        // Relación con Stylist
+        // Relation with Stylist
         if (dto.getStylistId() != null) {
             Stylist stylist = stylistRepository.findById(dto.getStylistId())
                     .orElseThrow(() -> new EntityNotFoundException("Stylist not found: " + dto.getStylistId()));
@@ -82,20 +87,27 @@ public class UserServiceImpl implements UserService {
         User existing = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found: " + id));
 
-        // Actualiza campos básicos
+        // Prevent updating with both client and stylist
+        if (dto.getClientId() != null && dto.getStylistId() != null) {
+            throw new IllegalArgumentException("A user cannot be linked to both a client and a stylist.");
+        }
+
+        // Update basic fields
         UserMapper.copyToEntity(dto, existing);
 
-        // Actualiza relaciones
+        // Update relations
         if (dto.getClientId() != null) {
             Client client = clientRepository.findById(dto.getClientId())
                     .orElseThrow(() -> new EntityNotFoundException("Client not found: " + dto.getClientId()));
             existing.setClient(client);
+            existing.setStylist(null); // remove stylist link
         }
 
         if (dto.getStylistId() != null) {
             Stylist stylist = stylistRepository.findById(dto.getStylistId())
                     .orElseThrow(() -> new EntityNotFoundException("Stylist not found: " + dto.getStylistId()));
             existing.setStylist(stylist);
+            existing.setClient(null); // remove client link
         }
 
         User saved = repository.save(existing);
@@ -126,5 +138,4 @@ public class UserServiceImpl implements UserService {
                 .map(UserMapper::toResponse)
                 .toList();
     }
-
 }

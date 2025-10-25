@@ -14,7 +14,6 @@ public class ReviewRequest {
     @NotBlank
     private String comment;
 
-    @NotBlank
     private Integer rating;
 
     @NotBlank

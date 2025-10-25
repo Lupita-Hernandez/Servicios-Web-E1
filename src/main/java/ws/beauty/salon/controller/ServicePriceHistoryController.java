@@ -17,7 +17,7 @@ import ws.beauty.salon.service.PriceHistoryService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/service-price-history")
+@RequestMapping("/api/v1/service-price-history")
 @Tag(name = "Service Price History", description = "Manages price change history for services")
 public class ServicePriceHistoryController {
 

@@ -7,6 +7,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,7 @@ import ws.beauty.salon.service.ReviewService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/reviews")
+@RequestMapping("/api/v1/reviews")
 @Tag(name = "Reviews", description = "Endpoints for managing client reviews")
 public class ReviewController {
 
@@ -26,14 +28,14 @@ public class ReviewController {
     private ReviewService reviewService;
 
     // 🔹 Obtener todos los reviews
-    @Operation(summary = "Get all reviews")
+    /*@Operation(summary = "Get all reviews")
     @ApiResponse(responseCode = "200", description = "List of all reviews",
             content = @Content(mediaType = "application/json",
                     array = @ArraySchema(schema = @Schema(implementation = ReviewResponse.class))))
     @GetMapping
     public List<ReviewResponse> getAll() {
         return reviewService.findAll();
-    }
+    }*/
 
     // 🔹 Obtener con paginación
     @Operation(summary = "Get paginated reviews")
@@ -66,7 +68,7 @@ public class ReviewController {
             content = @Content(mediaType = "application/json",
                     schema = @Schema(implementation = ReviewResponse.class)))
     @PostMapping
-    public ResponseEntity<ReviewResponse> create(@RequestBody ReviewRequest request) {
+    public ResponseEntity<ReviewResponse> create(@Valid @RequestBody ReviewRequest request) {
         ReviewResponse saved = reviewService.create(request);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
@@ -77,18 +79,18 @@ public class ReviewController {
             content = @Content(mediaType = "application/json",
                     schema = @Schema(implementation = ReviewResponse.class)))
     @PutMapping("/{id}")
-    public ReviewResponse update(@PathVariable Integer id, @RequestBody ReviewRequest request) {
+    public ReviewResponse update(@PathVariable Integer id,@Valid @RequestBody ReviewRequest request) {
         return reviewService.update(id, request);
     }
 
     // 🔹 Eliminar un review
-    @Operation(summary = "Delete a review by ID")
+    /*@Operation(summary = "Delete a review by ID")
     @ApiResponse(responseCode = "204", description = "Review deleted successfully")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id) {
         reviewService.delete(id);
-    }
+    }*/
 
     // ---------------------- CONSULTAS ESPECIALIZADAS ----------------------
 

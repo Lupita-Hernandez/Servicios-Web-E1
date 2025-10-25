@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import ws.beauty.salon.dto.AppointmentRequest;
 import ws.beauty.salon.model.Appointment;
 import ws.beauty.salon.service.AppointmentService;
 
 @RestController
-@RequestMapping("appointments")
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
+@RequestMapping("/api/v1/appointments")
 @Tag(name = "Appointments", description = "Provides methods for managing appointments")
 public class AppointmentController {
 
@@ -67,15 +67,14 @@ public class AppointmentController {
 
     @Operation(summary = "Create a new appointment")
     @PostMapping
-    public ResponseEntity<AppointmentRequest> add(@RequestBody AppointmentRequest appointmentDTO) {
+    public ResponseEntity<AppointmentRequest> add(@Valid @RequestBody AppointmentRequest appointmentDTO) {
         Appointment saved = service.save(convertToEntity(appointmentDTO));
         return new ResponseEntity<>(convertToDTO(saved), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Update an appointment")
     @PutMapping("{idAppointment}")
-    public ResponseEntity<AppointmentRequest> update(@PathVariable Integer idAppointment,
-                                                        @RequestBody AppointmentRequest appointmentDTO) {
+    public ResponseEntity<AppointmentRequest> update(@PathVariable Integer idAppointment,@Valid @RequestBody AppointmentRequest appointmentDTO) {
         Appointment existing = service.getById(idAppointment);
         if (existing == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 

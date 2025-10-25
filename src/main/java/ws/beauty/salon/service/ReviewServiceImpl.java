@@ -25,12 +25,12 @@ public class ReviewServiceImpl implements ReviewService {
     private final ServiceRepository serviceRepository;
     private final ModelMapper modelMapper;
 
-    @Override
+    /*@Override
     public List<ReviewResponse> findAll() {
         return repository.findAll().stream()
                 .map(this::mapToResponse)
                 .toList();
-    }
+    }*/
 
     @Override
     public List<ReviewResponse> findAllPaginated(int page, int pageSize) {
@@ -85,12 +85,12 @@ public class ReviewServiceImpl implements ReviewService {
         return mapToResponse(repository.save(existing));
     }
 
-    @Override
+    /*@Override
     public void delete(Integer id) {
         if (!repository.existsById(id))
             throw new EntityNotFoundException("Review not found: " + id);
         repository.deleteById(id);
-    }
+    }*/
 
     @Override
     public List<ReviewResponse> findByClientId(Integer clientId) {

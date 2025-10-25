@@ -25,7 +25,7 @@ import ws.beauty.salon.service.PaymentService;
 
 
 @RestController
-@RequestMapping("/payments")
+@RequestMapping("/api/v1/payments")
 @RequiredArgsConstructor
 public class PaymentController {
 

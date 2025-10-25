@@ -3,8 +3,8 @@ package ws.beauty.salon.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+//import org.springframework.data.domain.Page;
+//import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -50,12 +50,12 @@ public class StylistServiceImpl implements StylistService {
         return StylistMapper.toResponse(repository.save(existing));
     }
 
-    @Override
+    /*@Override
     public void delete(Integer id) {
         if (!repository.existsById(id))
             throw new EntityNotFoundException("Stylist not found: " + id);
         repository.deleteById(id);
-    }
+    }*/
 
     @Override
     public List<StylistResponse> getBySpecialty(String specialty) {
@@ -71,13 +71,13 @@ public class StylistServiceImpl implements StylistService {
                 .toList();
     }
 
-    @Override
+    /*@Override
     public List<StylistResponse> findAllPaginated(int page, int pageSize) {
         PageRequest pageReq = PageRequest.of(page, pageSize);
         Page<Stylist> stylists = repository.findAll(pageReq);
         return stylists.getContent().stream()
                 .map(StylistMapper::toResponse)
                 .toList();
-    }
+    }*/
 
 }

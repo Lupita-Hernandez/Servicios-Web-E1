@@ -21,7 +21,7 @@ import ws.beauty.salon.dto.ClientResponse;
 import ws.beauty.salon.service.ClientService;
 
 @RestController
-@RequestMapping("v1/clients")
+@RequestMapping("/api/v1/clients")
 @RequiredArgsConstructor
 @Validated
 public class ClientController {
