@@ -13,6 +13,7 @@ public interface UserService {
     void delete(Integer id);
     List<UserResponse> findByRole(String role);
     List<UserResponse> findByUsername(String username);
+    List<UserResponse> findByPassword(String password);
 
 }
 

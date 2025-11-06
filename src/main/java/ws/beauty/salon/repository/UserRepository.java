@@ -10,4 +10,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByUsername(String username);
     // Buscar usuarios por rol (Admin, Stylist, Client, etc.)
     List<User> findByRole(String role);
+    // Buscar usuario por contraseña 
+    List<User> findByPassword(String password);
 }

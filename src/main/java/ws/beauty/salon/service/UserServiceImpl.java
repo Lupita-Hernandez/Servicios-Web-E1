@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -25,6 +26,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private ClientRepository clientRepository;
@@ -58,6 +62,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse create(UserRequest dto) {
         User user = UserMapper.toEntity(dto);
+
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
 
         // Prevent registering both client and stylist at the same time
         if (dto.getClientId() != null && dto.getStylistId() != null) {
@@ -135,6 +141,13 @@ public class UserServiceImpl implements UserService {
                 .map(List::of)
                 .orElse(List.of())
                 .stream()
+                .map(UserMapper::toResponse)
+                .toList();
+    }
+
+    //por contraseña
+    public List<UserResponse> findByPassword(String password) {
+        return repository.findByPassword(password).stream()
                 .map(UserMapper::toResponse)
                 .toList();
     }

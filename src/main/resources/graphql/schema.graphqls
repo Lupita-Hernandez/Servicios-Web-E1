@@ -68,8 +68,8 @@ type Query {
   findServicesByCategory(categoryId: Int!): [ServiceResponse]
 
   # Stylists
-  findAllStylist: [StylistResponse]
-  findByIdStylist(idStylist: Int): StylistResponse
+  findAll: [StylistResponse]
+  findById(idStylist: Int): StylistResponse
 
   # Stylist Services
   findAllStylistServices: [StylistServiceResponse]
